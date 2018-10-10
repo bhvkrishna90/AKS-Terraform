@@ -1,8 +1,10 @@
+## Azure Resource Group for Azure Kubernetes Cluster ##
 resource "azurerm_resource_group" "k8s" {
     name     = "${var.resource_group_name}"
     location = "${var.location}"
 }
 
+## AKS Kubernetes Cluster ##
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = "${var.cluster_name}"
     location            = "${azurerm_resource_group.k8s.location}"
@@ -10,7 +12,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     dns_prefix          = "${var.dns_prefix}"
 
     linux_profile {
-        admin_username = "adminuser"
+        admin_username = "${var.admin_username}"
 
         ssh_key {
         key_data = "${file("${var.ssh_public_key}")}"
