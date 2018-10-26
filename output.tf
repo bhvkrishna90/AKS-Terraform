@@ -1,37 +1,27 @@
 output "client_key" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.client_key}"
+  value = "${module.k8s.client_key}"
 }
 
 output "client_certificate" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate}"
+  value = "${module.k8s.client_certificate}"
 }
 
 output "cluster_ca_certificate" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.cluster_ca_certificate}"
+  value = "${module.k8s.cluster_ca_certificate}"
 }
 
 output "cluster_username" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.username}"
+  value = "${module.k8s.cluster_username}"
 }
 
 output "cluster_password" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.password}"
+  value = "${module.k8s.cluster_password}"
 }
 
 output "kube_config" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config_raw}"
+  value = "${module.k8s.kube_config}"
 }
 
 output "host" {
-    value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.host}"
-}
-
-output "configure" {
-  value = <<CONFIGURE
-Run the following commands to configure kubernetes client:
-$ terraform output kube_config > ~/.kube/aksconfig
-$ export KUBECONFIG=~/.kube/aksconfig
-Test configuration using kubectl
-$ kubectl get nodes
-CONFIGURE
+    value = "${module.k8s.host}"
 }
