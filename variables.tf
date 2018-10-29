@@ -1,5 +1,7 @@
 variable "client_id" {
     description = "clinet id of service principal"
+    default = "e7e09d21-9866-dfb5a0db9556"
+}
 
 variable "client_secret" {
     description = "clinet secret of service principal"
@@ -44,4 +46,3 @@ variable admin_username {
     description = "Enter admin user name"
     default = "adminuser"
 }
-
