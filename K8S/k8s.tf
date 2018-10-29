@@ -10,7 +10,7 @@ resource "null_resource" "save-key" {
   }
   provisioner "local-exec" {
     command = <<EOF
-      mkdir -p ${path.module}\\.ssh
+      mkdir ${path.module}\\.ssh
       echo "${tls_private_key.key.private_key_pem}" > ${path.module}\\.ssh\\id_rsa
       chmod 0600 ${path.module}\\.ssh\\id_rsa
 EOF
@@ -26,6 +26,7 @@ resource azurerm_network_security_group "nsg" {
   name                = "${var.cluster_name}-nsg"
   location            = "${azurerm_resource_group.rgname.location}"
   resource_group_name = "${azurerm_resource_group.rgname.name}"
+  
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -63,11 +64,21 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     count   = "1"
     vm_size = "Standard_DS1_v2"
     os_type = "Linux"
+    os_disk_size_gb = "30"
 
     # Required for advanced networking
     vnet_subnet_id = "${azurerm_subnet.kube_subnet.id}"
   }
-  
+  addon_profile {
+    oms_agent {
+    enabled = true
+    log_analytics_workspace_id = "${var.omswsid}"
+    }
+  }
+
+  network_profile {
+    network_plugin = "azure"
+  }
 
   service_principal {
     client_id     = "${var.client_id}"

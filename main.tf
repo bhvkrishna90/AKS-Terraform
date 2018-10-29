@@ -7,7 +7,6 @@ module "oms" {
 
 
 module "k8s" {
-
   source = ".\\K8S"
   resource_group_name = "${var.prefix}-k8sresources"
   location = "${var.location}"

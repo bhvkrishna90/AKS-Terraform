@@ -25,3 +25,7 @@ output "kube_config" {
 output "host" {
     value = "${module.k8s.host}"
 }
+
+output "omsportal" {
+  value = "${module.oms.omsportal}"
+}
