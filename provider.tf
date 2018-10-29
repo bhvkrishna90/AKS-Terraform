@@ -1,9 +1,9 @@
 provider "azurerm" {
     version = "=1.5.0"
-    subscription_id = "85cXXXXb-XXXX-40fc-82b3-820479XXXXX"
-    client_id = "61XXXX-XXXX-4b8d-a1e1-1af05XXXXXX"
-    client_secret = "RvXXXcJbw="
-    tenant_id = "8aXXXXX-fe2d-4f79-85f3-a101XXXXXX"
+    subscription_id = "85c57493a3d4a"
+    client_id = "61e1a624-8150e6f277"
+    client_secret = "RvJsEvcYLLJXLuSEnpqcjcJbw="
+    tenant_id = "8a6905b2-a101cf50db14"
 }
 
 terraform {
@@ -11,7 +11,7 @@ terraform {
         resource_group_name  = "krish-logs"
         storage_account_name = "deplogs"
         container_name       = "deploymentlogs"
-        access_key           = "oHMyG1eAo8Nnmf0sBOIk4Fswu9tsAXdtFjvTskLThw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
-        key                  = "oHMyG1eAo8Nnmf0sBOIk4Fswu9tsAXdtFjvTskLThw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
+        access_key           = "oHMyG1eAo8Nnmf0sTskLThw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
+        key                  = "oHMyG1eAo8Nnmf0sBOIk4Thw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
     }
 }

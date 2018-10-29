@@ -23,20 +23,20 @@ resource "azurerm_resource_group" "rgname" {
 }
 
 resource azurerm_network_security_group "nsg" {
-  name                = "akc-1-nsg"
+  name                = "${var.cluster_name}-nsg"
   location            = "${azurerm_resource_group.rgname.location}"
   resource_group_name = "${azurerm_resource_group.rgname.name}"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "akc-1-vnet"
+  name                = "${var.cluster_name}-vnet"
   location            = "${azurerm_resource_group.rgname.location}"
   resource_group_name = "${azurerm_resource_group.rgname.name}"
   address_space       = ["10.1.0.0/16"]
 }
 
 resource "azurerm_subnet" "kube_subnet" {
-  name                      = "akc-1-subnet"
+  name                      = "${var.cluster_name}-subnet"
   resource_group_name       = "${azurerm_resource_group.rgname.name}"
   network_security_group_id = "${azurerm_network_security_group.nsg.id}"
   address_prefix            = "10.1.0.0/24"
@@ -44,14 +44,14 @@ resource "azurerm_subnet" "kube_subnet" {
 }
 
 resource "azurerm_kubernetes_cluster" "k8s" {
-  name       = "akc-1"
+  name       = "${var.cluster_name}"
   location   = "${azurerm_resource_group.rgname.location}"
-  dns_prefix = "akc-1"
+  dns_prefix = "${var.dns_prefix}"
 
   resource_group_name = "${azurerm_resource_group.rgname.name}"
 
   linux_profile {
-    admin_username = "adminuser"
+    admin_username = "${var.admin_username}"
 
     ssh_key {
       key_data = "${file("${var.ssh_public_key}")}"
@@ -60,17 +60,19 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   
   agent_pool_profile {
     name    = "agentpool"
-    count   = "2"
+    count   = "1"
     vm_size = "Standard_DS1_v2"
     os_type = "Linux"
 
     # Required for advanced networking
     vnet_subnet_id = "${azurerm_subnet.kube_subnet.id}"
   }
+  
 
   service_principal {
-    client_id     = "00000000-0000-0000-0000-000000000000"
-    client_secret = "00000000000000000000000000000000"
+    client_id     = "${var.client_id}"
+    client_secret = "${var.client_secret}"
   }
   
+  depends_on = ["azurerm_subnet.kube_subnet"]
 }
