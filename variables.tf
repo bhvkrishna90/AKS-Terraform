@@ -1,10 +1,10 @@
 variable "client_id" {
     description = "clinet id of service principal"
-    default = "e7e09d21-767b-455c-9866-dfb5a0db9556"
+    default = "e7e09d21--9866-dfb5a0db9556"
 }
 variable "client_secret" {
     description = "clinet secret of service principal"
-    default = "aTBr+Ff39wREVPKUEo+k5wnR73hSaVBIKJvm/SuWlsY="
+    default = "aTBr+Ff39w73hSaVBIKJvm/SuWlsY="
 }
 
 variable "agent_count" {
