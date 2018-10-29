@@ -7,7 +7,7 @@ variable "client_secret" {
 }
 variable "client_secret" {
     description = "clinet secret of service principal"
-    default = "9ebb62e4acf363892df354fbc7a743a1599f8e84"
+    default = "9ebb62e4ac7a743a1599f8e84"
 }
 
 variable "agent_count" {

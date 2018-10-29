@@ -11,7 +11,7 @@ terraform {
         resource_group_name  = "krish-logs"
         storage_account_name = "deplogs"
         container_name       = "deploymentlogs"
-        access_key           = "oHMyG1eAo8Nnmf0sTskLThw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
-        key                  = "oHMyG1eAo8Nnmf0sBOIk4Thw6dc2NYcxTivl7W0TiJ4btX+m+E8fglJ03Zo5KN6zIhUg=="
+        access_key           = "oHMyG1eAo8Nnmf0sTX+m+E8fglJ03Zo5KN6zIhUg=="
+        key                  = "oHMyG1eAo8Nnmf0sBOIk44btX+m+E8fglJ03Zo5KN6zIhUg=="
     }
 }
